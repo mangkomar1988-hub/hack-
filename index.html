@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXORA // Pure JS Sandbox Protocol</title>
+    <style>
+        :root {
+            --bg-color: #090d16;
+            --card-bg: #111827;
+            --accent: #3b82f6;
+            --accent-hover: #2563eb;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --border: #374151;
+            --danger: #ef4444;
+            --success: #34d399;
+        }
+
+        body {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            padding: 30px;
+            width: 100%;
+            max-width: 520px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: var(--accent);
+            text-transform: uppercase;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 12px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 12px;
+            background-color: #030712;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+
+        input[type="text"]:focus, select:focus {
+            outline: none;
+            border-color: var(--accent);
+        }
+
+        button {
+            background-color: var(--accent);
+            color: white;
+            border: none;
+            padding: 12px;
+            width: 100%;
+            border-radius: 4px;
+            font-size: 0.95rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s, transform 0.1s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        button:hover {
+            background-color: var(--accent-hover);
+        }
+
+        button:active {
+            transform: scale(0.98);
+        }
+
+        .terminal-box {
+            margin-top: 25px;
+            background-color: #030712;
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 15px;
+            font-size: 0.82rem;
+            height: 150px;
+            overflow-y: auto;
+            color: var(--success);
+            line-height: 1.4;
+        }
+
+        .error-log {
+            color: var(--danger);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>[NEXORA // JS Secure Sandbox]</h2>
+        <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 25px;">
+            Modul Manajemen Protokol Frontend (Pure JavaScript Execution)
+        </p>
+        
+        <div class="form-group">
+            <label for="targetNumber">Nomor Target / Identifikasi</label>
+            <input type="text" id="targetNumber" placeholder="Contoh: 628123456789">
+        </div>
+
+        <div class="form-group">
+            <label for="actionMethod">Pilih Metode Simulasi</label>
+            <select id="actionMethod">
+                <option value="standard_block">Blokir Standar (Local Sandbox)</option>
+                <option value="spam_report">Simulasi Laporan Massal / Spam Flagging</option>
+                <option value="rate_limit">Simulasi Pembatasan Gateway</option>
+            </select>
+        </div>
+
+        <button onclick="runJSSimulation()">Eksekusi Protokol</button>
+
+        <div class="terminal-box" id="terminalLog">
+            [SYSTEM] Menunggu input parameter dari terminal lokal...<br>
+        </div>
+    </div>
+
+    <script>
+        function runJSSimulation() {
+            const target = document.getElementById('targetNumber').value.trim();
+            const method = document.getElementById('actionMethod').value;
+            const logBox = document.getElementById('terminalLog');
+
+            // Validasi input kosong
+            if (!target) {
+                logBox.innerHTML += `<span class="error-log">[ERROR] Parameter nomor target belum diisi!</span><br>`;
+                logBox.scrollTop = logBox.scrollHeight;
+                return;
+            }
+
+            // Simulasi proses menggunakan asynchronous JavaScript (setTimeout)
+            logBox.innerHTML += `[INIT] Memproses target: <span style="color: #60a5fa;">${target}</span> via [${method}]...<br>`;
+            logBox.scrollTop = logBox.scrollHeight;
+
+            setTimeout(() => {
+                logBox.innerHTML += `[CONNECT] Menghubungkan ke antrean protokol lokal...<br>`;
+                logBox.scrollTop = logBox.scrollHeight;
+            }, 400);
+
+            setTimeout(() => {
+                logBox.innerHTML += `<span style="color: #34d399;">[SUCCESS] Simulasi metode [${method}] pada nomor ${target} selesai dijalankan di browser. Catatan: Ini adalah lingkungan sandbox murni tanpa koneksi ke server eksternal.</span><br><br>`;
+                logBox.scrollTop = logBox.scrollHeight;
+            }, 1000);
+        }
+    </script>
+</body>
+</html>
